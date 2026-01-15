@@ -1,0 +1,81 @@
+[
+  {
+    "id": 1,
+    "judul": "Bagonk",
+    "deskripsi": "An internal web-based admin system designed to centralize and manage customer purchase data efficiently.",
+    "detailed_deskripsi": "Bagonk is a comprehensive internal admin dashboard built to streamline the management of customer purchase data. It features real-time data visualization, user role management, and detailed reporting tools. The system is designed with a focus on usability and efficiency, allowing administrators to quickly access and process order information. Key features include automated invoice generation, customer purchase history tracking, and inventory integration.",
+    "image": "/images/bagonk.png",
+    "link": "https://bagonk.genah.net",
+    "github": "https://github.com/username/bagonk",
+    "tech_tools": [
+      "Vue",
+      "Scss",
+      "Javascript"
+    ]
+  },
+  {
+    "id": 2,
+    "judul": "Nutriflakes",
+    "deskripsi": "Nutriflakes is a health-focused product website that showcases a natural cereal brand designed to support digestive health.",
+    "detailed_deskripsi": "This project involved creating a high-performance landing page for Nutriflakes, a cereal brand focused on digestive health. The website is optimized for conversion and SEO, featuring fast load times and a responsive design. It includes sections for product benefits, customer testimonials, and a secure checkout process. The tech stack ensures the site is easily maintainable and scalable.",
+    "image": "/images/box.webp",
+    "link": "https://nutriflakes.id",
+    "github": "https://github.com/rekamsuar/Nutriflakes-compro",
+    "tech_tools": [
+      "Nuxt",
+      "Typescript",
+      "Tailwind",
+      "SEO Optimized",
+      "Google Search Console Analytics"
+    ]
+  },
+  {
+    "id": 3,
+    "judul": "Healthygrain",
+    "deskripsi": "Healthygrain.id is a health product website showcasing HealthyGrain®, a multigrain oat drink rich in fiber and nutrients.",
+    "detailed_deskripsi": "Healthygrain.id is a digital storefront for a premium multigrain oat drink. The website highlights the nutritional benefits of the product through engaging visuals and informative content. It features a custom CMS integration for easy content updates and a seamless e-commerce experience for customers. The design reflects the natural and healthy aspects of the brand.",
+    "image": "/images/healthygrain.webp",
+    "link": "https://healthygrain.id",
+    "github": "https://github.com/rekamsuar/Healthygrain-compro",
+    "tech_tools": [
+      "Nuxt",
+      "Typescript",
+      "Tailwind",
+      "SEO Optimized",
+      "Google Search Console Analytics"
+    ]
+  },
+  {
+    "id": 4,
+    "judul": "Javastefia77",
+    "deskripsi": "Javastefia77.id is an official product site for Javastefia77®, a premium liquid stevia sweetener.",
+    "detailed_deskripsi": "This website serves as the official platform for Javastefia77, a natural sugar alternative. The site educates users on the benefits of stevia and provides an easy way to purchase the product. It includes a blog section for recipes and health tips, further engaging the community. Built with modern web technologies, it ensures a smooth user experience across all devices.",
+    "image": "/images/product-javastefia.webp",
+    "link": "https://javastefia77.id",
+    "github": "https://github.com/rekamsuar/Javastefia77-compro",
+    "tech_tools": [
+      "Nuxt",
+      "Typescript",
+      "Tailwind",
+      "SEO Optimized",
+      "Google Search Console Analytics"
+    ]
+  },
+  {
+    "id": 5,
+    "judul": "Genvit",
+    "deskripsi": "Genvit.id is a digital health-oriented e-commerce platform providing quality health products.",
+    "detailed_deskripsi": "Genvit is a robust e-commerce platform dedicated to health and wellness products. It features a dynamic catalog, real-time inventory management using Socket.IO, and a secure payment gateway integration. The platform is built to handle high traffic and provides advanced analytics for the business owners to track sales and user behavior.",
+    "image": "/images/genvit.png",
+    "link": "https://genvit.id",
+    "github": "https://github.com/username/genvit",
+    "tech_tools": [
+      "Next",
+      "Javascript",
+      "Tailwind",
+      "SEO Optimized",
+      "Google Search Console Analytics",
+      "Socket IO"
+    ]
+  }
+]
