@@ -4,7 +4,7 @@ interface ScrollRevealProps {
     children: React.ReactNode;
     threshold?: number;
     className?: string;
-    delay?: string; // e.g., 'delay-200'
+    delay?: string; 
 }
 
 const ScrollReveal: React.FC<ScrollRevealProps> = ({
@@ -21,7 +21,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
             ([entry]) => {
                 if (entry.isIntersecting) {
                     setIsVisible(true);
-                    observer.disconnect(); // Only animate once
+                    observer.disconnect();
                 }
             },
             {

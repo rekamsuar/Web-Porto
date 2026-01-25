@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
+import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
 import Album from '@/components/Album';
 import Footer from '@/components/Footer';
@@ -20,8 +21,9 @@ export default function Home() {
                 <Navbar />
                 <Hero />
                 <About />
+                <Experience />
                 <Projects />
-                <Album />
+                {/* <Album /> */}
                 <Footer />
             </main>
         </>

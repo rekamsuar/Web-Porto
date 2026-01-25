@@ -1,110 +1,169 @@
+
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
+import { supabase } from '@/service/apiClient';
+import { GalleryAsset } from '@/types';
 
-const albumsData = [
-    {
-        id: 1,
-        title: 'Life in Code',
-        description: 'Snapshots from hackathons, late night coding sessions, and workspace setups.',
-        cover: 'bg-blue-100 dark:bg-blue-900',
-        count: 12
-    },
-    {
-        id: 2,
-        title: 'Travel Diaries',
-        description: 'Exploring new places, cultures, and finding inspiration in nature.',
-        cover: 'bg-green-100 dark:bg-green-900',
-        count: 24
-    },
-    {
-        id: 3,
-        title: 'Conference Talks',
-        description: 'Sharing knowledge and networking with amazing developers around the world.',
-        cover: 'bg-purple-100 dark:bg-purple-900',
-        count: 8
-    },
-    {
-        id: 4,
-        title: 'Photography',
-        description: 'A collection of my best shots, from landscapes to street photography.',
-        cover: 'bg-yellow-100 dark:bg-yellow-900',
-        count: 45
-    },
-    {
-        id: 5,
-        title: 'Video Projects',
-        description: 'Short films, tech reviews, and experimental video content.',
-        cover: 'bg-red-100 dark:bg-red-900',
-        count: 5
-    },
-    {
-        id: 6,
-        title: 'Community Events',
-        description: 'Meetups, workshops, and community gathering highlights.',
-        cover: 'bg-indigo-100 dark:bg-indigo-900',
-        count: 18
-    }
-];
+const AssetCard = ({ asset }: { asset: GalleryAsset }) => (
+    <div className="break-inside-avoid mb-2 relative group rounded-[1rem] overflow-hidden shadow-2xl bg-slate-200 dark:bg-slate-800 transition-all duration-700 hover:-translate-y-3 hover:shadow-blue-500/20">
+        <div className="relative overflow-hidden">
+            {asset.type === 'video' ? (
+                <video
+                    src={asset.url}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="w-full object-cover transform transition-transform duration-1000 group-hover:scale-110"
+                    style={{ minHeight: asset.isPortrait ? '450px' : '220px' }}
+                />
+            ) : (
+                <img
+                    src={asset.url}
+                    alt={asset.title}
+                    className="w-full object-cover transform transition-transform duration-1000 group-hover:scale-110"
+                    loading="lazy"
+                    style={{ minHeight: asset.isPortrait ? '450px' : '220px' }}
+                />
+            )}
+
+            <div className="absolute top-2 left-2 p-3 bg-white/10 backdrop-blur-xl rounded-2xl text-white border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-x-4 group-hover:translate-x-0">
+                {asset.type === 'video' ? (
+                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                    </svg>
+                ) : (
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                )}
+            </div>
+
+            <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <span className="inline-block px-3 py-1 bg-blue-600 text-[10px] font-bold uppercase tracking-widest text-white rounded-full mb-3">
+                        {asset.category}
+                    </span>
+                    <h4 className="text-2xl font-black text-white leading-tight">
+                        {asset.title}
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+);
 
 export default function Albums() {
-    const getDelayClass = (index: number) => {
-        const delays = ['delay-0', 'delay-100', 'delay-200', 'delay-300'];
-        return delays[index % delays.length];
-    };
+    const [galleryAssets, setGalleryAssets] = useState<GalleryAsset[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [activeFilter, setActiveFilter] = useState('All');
+    const [filters, setFilters] = useState(['All']);
+
+    useEffect(() => {
+        const fetchAlbums = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('albums')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                if (data) {
+                    const mappedData: GalleryAsset[] = data.map((item: any) => {
+                        const url = item.album;
+                        const isVideo = url.match(/\.(mp4|webm|ogg|mov)$/i);
+
+                        return {
+                            id: item.id,
+                            title: item.title,
+                            url: url,
+                            type: isVideo ? 'video' : 'image',
+                            isPortrait: item.id % 2 === 0,
+                            category: item.category || 'General'
+                        };
+                    });
+                    setGalleryAssets(mappedData);
+
+                    const uniqueCategories = Array.from(new Set(mappedData.map(a => a.category)));
+                    if (uniqueCategories.length > 1 || (uniqueCategories.length === 1 && uniqueCategories[0] !== 'General')) {
+                        setFilters(['All', ...uniqueCategories]);
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching albums:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchAlbums();
+    }, []);
+
+    const filteredAssets = activeFilter === 'All'
+        ? galleryAssets
+        : galleryAssets.filter(a => a.category === activeFilter);
+
 
     return (
         <>
             <Head>
-                <title>Albums | Portfolio</title>
-                <meta name="description" content="Photo and video albums showcasing my life and work." />
+                <title>Gallery | Portfolio</title>
+                <meta name="description" content="A cinematic collection of photos and videos." />
             </Head>
 
-            <main className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300 flex flex-col">
+            <main className="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-500 flex flex-col">
                 <Navbar />
 
-                <section className="pt-32 pb-16 flex-grow">
+                <section className="pt-32 pb-24 flex-grow">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <ScrollReveal>
-                            <div className="text-center mb-16">
-                                <h1 className="text-4xl md:text-5xl font-poppins font-bold text-slate-900 dark:text-white mb-4">
-                                    My Albums
+                            <div className="text-center mb-10">
+                                <h1 className="text-5xl sm:text-6xl md:text-8xl font-black text-slate-900 dark:text-white mb-8 tracking-tighter">
+                                    THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-400">GALLERY</span>
                                 </h1>
-                                <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                                    A collection of moments, diverse projects, and memories captured in photos and videos.
-                                </p>
+
+                                <div className="flex flex-wrap justify-center gap-3 mb-12">
+                                    {filters.map(filter => (
+                                        <button
+                                            key={filter}
+                                            onClick={() => setActiveFilter(filter)}
+                                            className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 ${activeFilter === filter
+                                                ? 'bg-blue-600 text-white shadow-xl shadow-blue-600/30 grow-0 scale-105'
+                                                : 'bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'
+                                                }`}
+                                        >
+                                            {filter}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
                         </ScrollReveal>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {albumsData.map((album, index) => (
-                                <ScrollReveal key={album.id} delay={getDelayClass(index)}>
-                                    <div className="group cursor-pointer bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-xl border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                                        <div className={`h-56 w-full ${album.cover} relative overflow-hidden`}>
-                                            {/* Placeholder for actual image */}
-                                            <div className="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-500 opacity-30 text-6xl font-bold">
-                                                {album.title.charAt(0)}
-                                            </div>
-                                            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors"></div>
+                        {isLoading ? (
+                            <div className="flex justify-center items-center py-20">
+                                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+                            </div>
+                        ) : (
+                            <>
+                                <div className="columns-1 md:columns-2 lg:columns-3 gap-8">
+                                    {filteredAssets.map((asset) => (
+                                        <ScrollReveal key={asset.id}>
+                                            <AssetCard asset={asset} />
+                                        </ScrollReveal>
+                                    ))}
+                                </div>
 
-                                            <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1 rounded-full">
-                                                {album.count} items
-                                            </div>
-                                        </div>
-
-                                        <div className="p-6">
-                                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                                                {album.title}
-                                            </h3>
-                                            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                                                {album.description}
-                                            </p>
-                                        </div>
+                                {filteredAssets.length === 0 && (
+                                    <div className="text-center py-20">
+                                        <p className="text-slate-500 text-lg">No items found in this category.</p>
                                     </div>
-                                </ScrollReveal>
-                            ))}
-                        </div>
+                                )}
+                            </>
+                        )}
                     </div>
                 </section>
 
