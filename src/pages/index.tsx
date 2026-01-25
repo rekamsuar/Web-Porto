@@ -11,8 +11,8 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>Portfolio | Creative Developer</title>
-                <meta name="description" content="Portfolio of a creative developer specializing in modern web experiences." />
+                <title>Portfolio | Developer</title>
+                <meta name="description" content="Portfolio of a developer specializing in modern web experiences." />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
