@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Experience from '@/components/Experience';
+import TechStack from '@/components/TechStack';
 import Projects from '@/components/Projects';
 import Album from '@/components/Album';
 import Footer from '@/components/Footer';
@@ -22,6 +23,7 @@ export default function Home() {
                 <Hero />
                 <About />
                 <Experience />
+                <TechStack />
                 <Projects />
                 {/* <Album /> */}
                 <Footer />
