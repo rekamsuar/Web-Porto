@@ -2,7 +2,7 @@
   {
     "id": 1,
     "title": "Sunrise Mount Merbabu",
-    "album": "/images/albums/cityLight.jpeg",
+    "album": "/images/albums/cityLight.JPEG",
     "category": "Travel",
     "created_at": "2025-12-01T00:00:00Z"
   },
@@ -16,42 +16,42 @@
   {
     "id": 3,
     "title": "The Anatomy of Destruction",
-    "album": "/images/albums/abstrak2.jpeg",
+    "album": "/images/albums/abstrak2.JPEG",
     "category": "Travel",
     "created_at": "2025-11-10T00:00:00Z"
   },
   {
     "id": 4,
     "title": "Train",
-    "album": "/images/albums/train.png",
+    "album": "/images/albums/train.PNG",
     "category": "Vehicle",
     "created_at": "2025-10-25T00:00:00Z"
   },
   {
     "id": 5,
     "title": "Ritual Remains",
-    "album": "/images/albums/abstrak.jpeg",
+    "album": "/images/albums/abstrak.JPEG",
     "category": "Travel",
     "created_at": "2025-10-15T00:00:00Z"
   },
   {
     "id": 6,
     "title": "Fonograf",
-    "album": "/images/albums/child.jpeg",
+    "album": "/images/albums/child.JPEG",
     "category": "Travel",
     "created_at": "2025-09-30T00:00:00Z"
   },
   {
     "id": 7,
     "title": "View Mount Sindoro",
-    "album": "/images/albums/KembangBehindSindoro.jpeg",
+    "album": "/images/albums/KembangBehindSindoro.JPEG",
     "category": "Travel",
     "created_at": "2025-09-15T00:00:00Z"
   },
   {
     "id": 8,
     "title": "View Mount Merapi",
-    "album": "/images/albums/merbabuOne.jpeg",
+    "album": "/images/albums/merbabuOne.JPEG",
     "category": "Travel",
     "created_at": "2025-08-20T00:00:00Z"
   },
