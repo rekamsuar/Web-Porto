@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '../service/apiClient';
 import ScrollReveal from './ScrollReveal';
 import { Experiences } from '@/types';
+import experiencesData from '@/data/experiences.json';
 
 const Experience: React.FC = () => {
     const [experiences, setExperiences] = useState<Experiences[]>([]);
@@ -9,27 +9,17 @@ const Experience: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchExperiences = async () => {
-            try {
-                setLoading(true);
-                const { data, error } = await supabase
-                    .from('experience')
-                    .select('*')
-                    .order('period-start', { ascending: false });
-
-                if (error) {
-                    throw error;
-                }
-
-                setExperiences(data || []);
-            } catch (err: any) {
-                setError(err.message || 'Failed to fetch experiences');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchExperiences();
+        try {
+            setLoading(true);
+            const sorted = [...experiencesData].sort(
+                (a, b) => new Date(b['period-start']).getTime() - new Date(a['period-start']).getTime()
+            );
+            setExperiences(sorted);
+        } catch (err: any) {
+            setError(err.message || 'Failed to load experiences');
+        } finally {
+            setLoading(false);
+        }
     }, []);
 
     const formatDate = (dateString: string) => {

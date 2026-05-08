@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '../service/apiClient';
 import ScrollReveal from './ScrollReveal';
 import { Project } from '@/types';
+import projectsData from '@/data/projects.json';
 
 const Projects: React.FC = () => {
     const [projects, setProjects] = useState<Project[]>([]);
@@ -10,27 +10,17 @@ const Projects: React.FC = () => {
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
     useEffect(() => {
-        const fetchProjects = async () => {
-            try {
-                setLoading(true);
-                const { data, error } = await supabase
-                    .from('project')
-                    .select('*')
-                    .order('created_at', { ascending: false });
-
-                if (error) {
-                    throw error;
-                }
-
-                setProjects(data || []);
-            } catch (err: any) {
-                setError(err.message || 'Failed to fetch projects');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProjects();
+        try {
+            setLoading(true);
+            const sorted = [...projectsData].sort(
+                (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+            );
+            setProjects(sorted);
+        } catch (err: any) {
+            setError(err.message || 'Failed to load projects');
+        } finally {
+            setLoading(false);
+        }
     }, []);
 
     const openModal = (project: Project) => {

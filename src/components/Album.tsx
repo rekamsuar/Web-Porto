@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import ScrollReveal from './ScrollReveal';
-import { supabase } from '@/service/apiClient';
+import albumsData from '@/data/albums.json';
 
 
 interface AlbumAsset {
@@ -68,39 +68,29 @@ const Album = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const fetchAlbums = async () => {
-            try {
-                const { data, error } = await supabase
-                    .from('albums')
-                    .select('*')
-                    .limit(9)
-                    .order('created_at', { ascending: false });
+        try {
+            const sorted = [...albumsData]
+                .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+                .slice(0, 9);
 
-                if (error) throw error;
+            const mappedData: AlbumAsset[] = sorted.map((item) => {
+                const url = item.album;
+                const isVideo = url.match(/\.(mp4|webm|ogg|mov)$/i);
 
-                if (data) {
-                    const mappedData: AlbumAsset[] = data.map((item: any) => {
-                        const url = item.album;
-                        const isVideo = url.match(/\.(mp4|webm|ogg|mov)$/i);
-
-                        return {
-                            id: item.id,
-                            title: item.title,
-                            url: url,
-                            type: isVideo ? 'video' : 'image',
-                            isPortrait: item.id % 2 === 0
-                        };
-                    });
-                    setAlbumAssets(mappedData);
-                }
-            } catch (error) {
-                console.error('Error fetching albums:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        fetchAlbums();
+                return {
+                    id: item.id,
+                    title: item.title,
+                    url: url,
+                    type: isVideo ? 'video' : 'image',
+                    isPortrait: item.id % 2 === 0
+                };
+            });
+            setAlbumAssets(mappedData);
+        } catch (error) {
+            console.error('Error loading albums:', error);
+        } finally {
+            setIsLoading(false);
+        }
     }, []);
 
     return (

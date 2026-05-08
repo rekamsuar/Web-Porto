@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "title": "Sunrise Mount Merbabu",
+    "album": "/images/albums/cityLight.jpeg",
+    "category": "Travel",
+    "created_at": "2025-12-01T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "title": "Forest",
+    "album": "/images/albums/cokicoki.MOV",
+    "category": "Travel",
+    "created_at": "2025-11-20T00:00:00Z"
+  },
+  {
+    "id": 3,
+    "title": "The Anatomy of Destruction",
+    "album": "/images/albums/abstrak2.jpeg",
+    "category": "Travel",
+    "created_at": "2025-11-10T00:00:00Z"
+  },
+  {
+    "id": 4,
+    "title": "Train",
+    "album": "/images/albums/train.png",
+    "category": "Vehicle",
+    "created_at": "2025-10-25T00:00:00Z"
+  },
+  {
+    "id": 5,
+    "title": "Ritual Remains",
+    "album": "/images/albums/abstrak.jpeg",
+    "category": "Travel",
+    "created_at": "2025-10-15T00:00:00Z"
+  },
+  {
+    "id": 6,
+    "title": "Fonograf",
+    "album": "/images/albums/child.jpeg",
+    "category": "Travel",
+    "created_at": "2025-09-30T00:00:00Z"
+  },
+  {
+    "id": 7,
+    "title": "View Mount Sindoro",
+    "album": "/images/albums/KembangBehindSindoro.jpeg",
+    "category": "Travel",
+    "created_at": "2025-09-15T00:00:00Z"
+  },
+  {
+    "id": 8,
+    "title": "View Mount Merapi",
+    "album": "/images/albums/merbabuOne.jpeg",
+    "category": "Travel",
+    "created_at": "2025-08-20T00:00:00Z"
+  },
+  {
+    "id": 9,
+    "title": "View Mount Merbabu",
+    "album": "/images/albums/merbabu.MP4",
+    "category": "Travel",
+    "created_at": "2025-08-01T00:00:00Z"
+  },
+  {
+    "id": 10,
+    "title": "Milky Way Mount Sumbing",
+    "album": "/images/albums/milkyway.jpeg",
+    "category": "Travel",
+    "created_at": "2025-08-01T00:00:00Z"
+  }
+]

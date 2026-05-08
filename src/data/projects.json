@@ -1,0 +1,111 @@
+[
+  {
+    "id": 1,
+    "title": "POS D'Hardjosoewarno",
+    "description": "POS website for retail stores was developed to meet store needs, including purchase transactions, sales, stock management, financial management, and sales manage.",
+    "image": "/images/project/hardjosoewarno.svg",
+    "url-web": "",
+    "url-github": "https://github.com/rekamsuar/KAHAS",
+    "tech-tools": [
+      "React",
+      "TypeScript",
+      "Sccs",
+      "Bootstrap 5",
+      "Laravel"
+    ],
+    "created_at": "2025-12-01T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "title": "Genvit",
+    "description": "Genvit is a digital health-based e-commerce platform that provides quality health products. One of its outstanding features is the ease of ordering without the need to login.",
+    "image": "/images/project/genvit.png",
+    "url-web": "https://genvit.id",
+    "url-github": "https://github.com/rekamsuar/Genvit",
+    "tech-tools": [
+      "Next",
+      "Javascript",
+      "Tailwind CSS",
+      "Seo Optimized",
+      "Google Search Console Analytics",
+      "Socket IO"
+    ],
+    "created_at": "2025-10-15T00:00:00Z"
+  },
+  {
+    "id": 3,
+    "title": "Javastefia77",
+    "description": "JavaStefia77 is a premium liquid stevia sweetener made from grade A Stevia rebaudiana leaf extract, rich in Rebaudioside A (Reb-A) for a naturally sweet taste without any bitter aftertaste. Free from dextrose and maltodextrin, Javastefia77 is safe for diabetics, low in calories, and ideal for a healthy lifestyle. Available in 3 flavors and related health articles.",
+    "image": "/images/project/product-javastefia.webp",
+    "url-web": "https://javastefia77.id",
+    "url-github": "https://github.com/rekamsuar/Javastefia77-compro",
+    "tech-tools": [
+      "Nuxt",
+      "Typescript",
+      "Tailwind",
+      "Seo Optimized",
+      "Google Search Console Analytics"
+    ],
+    "created_at": "2025-08-20T00:00:00Z"
+  },
+  {
+    "id": 4,
+    "title": "Healthygrain",
+    "description": "Healthygrain.id is a health product website that features HealthyGrain®, a multigrain oat drink rich in fiber and nutrients. Learn about the ingredients in HealthyGrain®, the benefits of HealthyGrain®, nutritional information, and articles related to health and HealthyGrain®.",
+    "image": "/images/project/healthygrain.webp",
+    "url-web": "https://healthygrain.id",
+    "url-github": "https://github.com/rekamsuar/Healthygrain-compro",
+    "tech-tools": [
+      "Nuxt",
+      "Typescript",
+      "Tailwind",
+      "Seo Optimized",
+      "Google Search Console Analytics"
+    ],
+    "created_at": "2025-06-10T00:00:00Z"
+  },
+  {
+    "id": 5,
+    "title": "Nutriflakes",
+    "description": "This project involves creating a high-performance landing page for Nutriflakes, a cereal brand that focuses on digestive health. The website is optimized for conversion and SEO, with fast loading times and a responsive design. It includes sections on product benefits, product ingredients, customer testimonials, articles about the product and health, and video content.",
+    "image": "/images/project/box.webp",
+    "url-web": "https://example.com",
+    "url-github": "https://github.com/example/blog",
+    "tech-tools": [
+      "Nuxt",
+      "Typescript",
+      "Tailwind",
+      "Seo Optimized",
+      "Google Search Console Analytics"
+    ],
+    "created_at": "2025-04-05T00:00:00Z"
+  },
+  {
+    "id": 6,
+    "title": "Anoman",
+    "description": "An internal web-based admin system designed to create events or gifts to be given to customers.",
+    "image": "/images/project/gift-light.png",
+    "url-web": "https://anoman-gift.genah.net",
+    "url-github": "https://github.com/rekamsuar/Anoman-Gift",
+    "tech-tools": [
+      "Vue",
+      "Javascript",
+      "Scss"
+    ],
+    "created_at": "2025-02-18T00:00:00Z"
+  },
+  {
+    "id": 7,
+    "title": "Bagonk",
+    "description": "An internal web-based admin system designed to centralize and manage customer purchase data efficiently.",
+    "image": "/images/project/bagonk.png",
+    "url-web": "https://bagonk.genah.net/auth",
+    "url-github": "https://github.com/username/bagonk",
+    "tech-tools": [
+      "Vue",
+      "Javascript",
+      "Scss"
+    ],
+    "created_at": "2025-02-18T00:00:00Z"
+  }
+]

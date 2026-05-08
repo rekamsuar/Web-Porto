@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
-import { supabase } from '@/service/apiClient';
+import albumsData from '@/data/albums.json';
 import { GalleryAsset } from '@/types';
 
 const AssetCard = ({ asset }: { asset: GalleryAsset }) => (
@@ -63,44 +63,35 @@ export default function Albums() {
     const [filters, setFilters] = useState(['All']);
 
     useEffect(() => {
-        const fetchAlbums = async () => {
-            try {
-                const { data, error } = await supabase
-                    .from('albums')
-                    .select('*')
-                    .order('created_at', { ascending: false });
+        try {
+            const sorted = [...albumsData].sort(
+                (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+            );
 
-                if (error) throw error;
+            const mappedData: GalleryAsset[] = sorted.map((item) => {
+                const url = item.album;
+                const isVideo = url.match(/\.(mp4|webm|ogg|mov)$/i);
 
-                if (data) {
-                    const mappedData: GalleryAsset[] = data.map((item: any) => {
-                        const url = item.album;
-                        const isVideo = url.match(/\.(mp4|webm|ogg|mov)$/i);
+                return {
+                    id: item.id,
+                    title: item.title,
+                    url: url,
+                    type: isVideo ? 'video' : 'image',
+                    isPortrait: item.id % 2 === 0,
+                    category: item.category || 'General'
+                };
+            });
+            setGalleryAssets(mappedData);
 
-                        return {
-                            id: item.id,
-                            title: item.title,
-                            url: url,
-                            type: isVideo ? 'video' : 'image',
-                            isPortrait: item.id % 2 === 0,
-                            category: item.category || 'General'
-                        };
-                    });
-                    setGalleryAssets(mappedData);
-
-                    const uniqueCategories = Array.from(new Set(mappedData.map(a => a.category)));
-                    if (uniqueCategories.length > 1 || (uniqueCategories.length === 1 && uniqueCategories[0] !== 'General')) {
-                        setFilters(['All', ...uniqueCategories]);
-                    }
-                }
-            } catch (error) {
-                console.error('Error fetching albums:', error);
-            } finally {
-                setIsLoading(false);
+            const uniqueCategories = Array.from(new Set(mappedData.map(a => a.category)));
+            if (uniqueCategories.length > 1 || (uniqueCategories.length === 1 && uniqueCategories[0] !== 'General')) {
+                setFilters(['All', ...uniqueCategories]);
             }
-        };
-
-        fetchAlbums();
+        } catch (error) {
+            console.error('Error loading albums:', error);
+        } finally {
+            setIsLoading(false);
+        }
     }, []);
 
     const filteredAssets = activeFilter === 'All'

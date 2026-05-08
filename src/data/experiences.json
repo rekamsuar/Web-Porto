@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "company": "PT Gawe Becik Nadhah Anugrah",
+    "position": "Frontend Developer",
+    "image": "/images/experience/gb.svg",
+    "period-start": "2025-01-07 08:32:00",
+    "period-end": "2026-05-05 08:32:00",
+    "created_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "company": "CV Projo Teknologi Nusantara",
+    "position": "Fullstack Web Developer",
+    "image": "/images/experience/LogoProjoTech.png",
+    "period-start": "2023-09-11 08:32:00",
+    "period-end": "2024-05-11 08:32:00",
+    "created_at": "2024-01-01T00:00:00Z"
+  }
+]
