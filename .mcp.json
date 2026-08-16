@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "serena": {
+      "command": "serena",
+      "args": [
+        "start-mcp-server",
+        "--project-from-cwd",
+        "--open-web-dashboard",
+        "true"
+      ],
+      "lifecycle": "lazy"
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "ctx7sk-aa9ffe0c-0899-465e-be07-e6d79c02d7fb"
+      },
+      "directTools": true
+    }
+  }
+}
