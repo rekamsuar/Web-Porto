@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Camera, Play } from '@phosphor-icons/react';
 import ScrollReveal from './ScrollReveal';
 import albumsData from '@/data/albums.json';
 
@@ -27,9 +28,7 @@ const AlbumAssetCard: React.FC<{ asset: AlbumAsset }> = ({ asset }) => {
                         style={{ minHeight: asset.isPortrait ? '400px' : '200px' }}
                     />
                     <div className="absolute top-4 left-4 p-2 bg-black/40 backdrop-blur-md rounded-lg text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8 5v14l11-7z" />
-                        </svg>
+                        <Play size={20} weight="fill" />
                     </div>
                 </div>
             ) : (
@@ -42,10 +41,7 @@ const AlbumAssetCard: React.FC<{ asset: AlbumAsset }> = ({ asset }) => {
                         style={{ minHeight: asset.isPortrait ? '400px' : '200px' }}
                     />
                     <div className="absolute top-4 left-4 p-2 bg-white/20 backdrop-blur-md rounded-lg text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                            <circle cx="12" cy="13" r="3" />
-                        </svg>
+                        <Camera size={20} weight="bold" />
                     </div>
                 </div>
             )}

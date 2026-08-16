@@ -1,5 +1,6 @@
 
 import '@/styles/globals.css';
+import { poppins } from '@/lib/fonts';
 import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
 
@@ -20,5 +21,14 @@ export default function App({ Component, pageProps }: AppProps) {
         }
     }, []);
 
-    return <Component {...pageProps} />;
+    return (
+        <>
+            <style jsx global>{`
+                html {
+                    font-family: ${poppins.style.fontFamily};
+                }
+            `}</style>
+            <Component {...pageProps} />
+        </>
+    );
 }

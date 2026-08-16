@@ -5,7 +5,6 @@ import About from '@/components/About';
 import Experience from '@/components/Experience';
 import TechStack from '@/components/TechStack';
 import Projects from '@/components/Projects';
-import Album from '@/components/Album';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -18,7 +17,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+            <main className="min-h-[100dvh] bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
                 <Navbar />
                 <Hero />
                 <About />

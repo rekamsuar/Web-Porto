@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Warning } from '@phosphor-icons/react';
 import ScrollReveal from './ScrollReveal';
 import { Experiences } from '@/types';
 import experiencesData from '@/data/experiences.json';
@@ -15,8 +16,8 @@ const Experience: React.FC = () => {
                 (a, b) => new Date(b['period-start']).getTime() - new Date(a['period-start']).getTime()
             );
             setExperiences(sorted);
-        } catch (err: any) {
-            setError(err.message || 'Failed to load experiences');
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : 'Failed to load experiences');
         } finally {
             setLoading(false);
         }
@@ -42,7 +43,7 @@ const Experience: React.FC = () => {
                     <div className="text-center mb-16">
                         <h3 className="text-4xl md:text-5xl font-poppins font-bold text-slate-900 dark:text-white transition-colors">Work Experience</h3>
                         <p className="mt-4 text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                            A timeline of my professional growth and the companies I've had the pleasure to work with.
+                            A timeline of my professional growth and the companies I&apos;ve had the pleasure to work with.
                         </p>
                     </div>
                 </ScrollReveal>
@@ -50,7 +51,7 @@ const Experience: React.FC = () => {
                 {loading && (
                     <div className="space-y-8 md:space-y-12">
                         {[1, 2].map((i) => (
-                            <div key={i} className="animate-pulse bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-6 md:p-8 border border-slate-100 dark:border-slate-700/50">
+                            <div key={i} className="animate-pulse bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 md:p-8 border border-slate-100 dark:border-slate-700/50">
                                 <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-10">
                                     <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-slate-200 dark:bg-slate-700"></div>
                                     <div className="flex-grow w-full">
@@ -67,9 +68,7 @@ const Experience: React.FC = () => {
                 {error && (
                     <div className="text-center py-12">
                         <div className="text-red-500 dark:text-red-400 mb-4">
-                            <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                            </svg>
+                            <Warning size={64} weight="light" className="mx-auto" />
                         </div>
                         <p className="text-slate-600 dark:text-slate-400">{error}</p>
                     </div>
@@ -83,7 +82,7 @@ const Experience: React.FC = () => {
                                     <div className="hidden md:block absolute left-[2.25rem] top-20 bottom-[-3rem] w-0.5 bg-gradient-to-b from-blue-600/50 to-transparent"></div>
                                 )}
 
-                                <div className="group bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-6 md:p-8 border border-slate-100 dark:border-slate-700/50 hover:border-blue-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/5 hover:-translate-y-1 flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-10">
+                                <div className="group bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 md:p-8 border border-slate-100 dark:border-slate-700/50 hover:border-blue-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/5 hover:-translate-y-1 flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-10">
                                     <div className="relative shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden shadow-lg border-4 border-white dark:border-slate-700 group-hover:scale-110 transition-transform duration-500 bg-white dark:bg-slate-800">
                                         <img
                                             src={exp.image}

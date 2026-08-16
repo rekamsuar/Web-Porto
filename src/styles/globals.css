@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 @import 'tailwindcss';
 
 @theme {
-    --font-poppins: 'Poppins', sans-serif;
+    --font-poppins: var(--font-poppins), 'Poppins', system-ui, sans-serif;
 }
 
 /* Force dark mode to work with class strategy if not default */
@@ -98,13 +96,34 @@
 
 /* Global Styles */
 body {
-    font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
     @apply bg-slate-50 dark:bg-slate-900 transition-colors duration-300;
 }
 
 html {
     scroll-behavior: smooth;
+}
+
+/* Respect prefers-reduced-motion for CSS-driven animations */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .animate-blob,
+    .animate-fadeIn,
+    .animate-modalPop,
+    .animate-fade-in-up {
+        animation: none !important;
+    }
+
+    .animation-delay-150,
+    .animation-delay-300,
+    .animation-delay-450,
+    .animation-delay-2000,
+    .animation-delay-4000 {
+        animation-delay: 0ms !important;
+    }
 }
 /* Custom Delay Utilities */
 .delay-0 { transition-delay: 0ms; }

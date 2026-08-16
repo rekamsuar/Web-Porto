@@ -1,22 +1,29 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
 
 interface ScrollRevealProps {
     children: React.ReactNode;
     threshold?: number;
     className?: string;
-    delay?: string; 
+    delay?: string;
 }
 
 const ScrollReveal: React.FC<ScrollRevealProps> = ({
     children,
     threshold = 0.1,
-    className = "",
-    delay = ""
+    className = '',
+    delay = ''
 }) => {
-    const [isVisible, setIsVisible] = useState(false);
+    const prefersReducedMotion = usePrefersReducedMotion();
+    const [isVisible, setIsVisible] = useState(prefersReducedMotion);
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        if (prefersReducedMotion) return;
+
+        const element = ref.current;
+        if (!element) return;
+
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -24,30 +31,19 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
                     observer.disconnect();
                 }
             },
-            {
-                threshold: threshold
-            }
+            { threshold }
         );
 
-        if (ref.current) {
-            observer.observe(ref.current);
-        }
+        observer.observe(element);
+        return () => observer.disconnect();
+    }, [threshold, prefersReducedMotion]);
 
-        return () => {
-            if (ref.current) {
-                observer.unobserve(ref.current);
-            }
-        };
-    }, [threshold]);
+    const animationClasses = prefersReducedMotion
+        ? className
+        : `transition-all duration-1000 transform ${isVisible ? `opacity-100 translate-y-0 ${delay}` : 'opacity-0 translate-y-10'} ${className}`;
 
     return (
-        <div
-            ref={ref}
-            className={`transition-all duration-1000 transform ${isVisible
-                    ? `opacity-100 translate-y-0 ${delay}`
-                    : 'opacity-0 translate-y-10'
-                } ${className}`}
-        >
+        <div ref={ref} className={animationClasses}>
             {children}
         </div>
     );

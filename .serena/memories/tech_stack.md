@@ -23,9 +23,13 @@
 - `@supabase/supabase-js` 2.45.4 — installed but client code is commented out.
 
 ## Fonts / icons
-- Google Fonts (Poppins, Inter) loaded in `_document.tsx`.
+- **Poppins** loaded via `next/font/google` (`src/lib/fonts.ts`). No external `<link>` font requests in production.
+- UI icons from `@phosphor-icons/react`.
+- Brand social icons from `simple-icons` where available; LinkedIn remains inline SVG because it is absent from `simple-icons`.
 - Skill icons fetched from `https://skillicons.dev/icons?i=<icon>`.
-- Inline SVGs for UI icons and social links.
+
+## State / hooks
+- Custom hooks in `src/hooks/`: `useTheme` (syncs `localStorage.theme` and `prefers-color-scheme`), `usePrefersReducedMotion` (wraps reduced-motion media query).
 
 ## PWA
 - `public/manifest.json`, `public/sw.js`.

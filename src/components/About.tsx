@@ -32,7 +32,7 @@ const About = () => {
                             My name is Sutrisno, a graduate of Informatic Engineering from Politeknik Harapan Bersama Tegal. I am a passionate developer who creates aesthetic and functional web applications, specializing in frontend development.
                         </p>
                         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed transition-colors">
-                            When I'm not coding, you can find me exploring this beautiful world.
+                            When I&apos;m not coding, you can find me exploring this beautiful world.
                         </p>
 
                         <div className="grid grid-cols-2 gap-4 sm:gap-6 pt-4">

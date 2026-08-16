@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
+import { Camera, Play } from '@phosphor-icons/react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -8,7 +9,7 @@ import albumsData from '@/data/albums.json';
 import { GalleryAsset } from '@/types';
 
 const AssetCard = ({ asset }: { asset: GalleryAsset }) => (
-    <div className="break-inside-avoid mb-2 relative group rounded-[1rem] overflow-hidden shadow-2xl bg-slate-200 dark:bg-slate-800 transition-all duration-700 hover:-translate-y-3 hover:shadow-blue-500/20">
+    <div className="break-inside-avoid mb-2 relative group rounded-2xl overflow-hidden shadow-2xl bg-slate-200 dark:bg-slate-800 transition-all duration-700 hover:-translate-y-3 hover:shadow-blue-500/20">
         <div className="relative overflow-hidden">
             {asset.type === 'video' ? (
                 <video
@@ -31,15 +32,7 @@ const AssetCard = ({ asset }: { asset: GalleryAsset }) => (
             )}
 
             <div className="absolute top-2 left-2 p-3 bg-white/10 backdrop-blur-xl rounded-2xl text-white border border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-x-4 group-hover:translate-x-0">
-                {asset.type === 'video' ? (
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                    </svg>
-                ) : (
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                )}
+                {asset.type === 'video' ? <Play size={24} weight="fill" /> : <Camera size={24} weight="bold" />}
             </div>
 
             <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -106,7 +99,7 @@ export default function Albums() {
                 <meta name="description" content="A cinematic collection of photos and videos." />
             </Head>
 
-            <main className="min-h-screen bg-white dark:bg-slate-950 transition-colors duration-500 flex flex-col">
+            <main className="min-h-[100dvh] bg-white dark:bg-slate-950 transition-colors duration-500 flex flex-col">
                 <Navbar />
 
                 <section className="pt-32 pb-24 flex-grow">

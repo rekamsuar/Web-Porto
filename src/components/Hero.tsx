@@ -1,30 +1,10 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
+import { ArrowDown } from '@phosphor-icons/react';
 
 const Hero = () => {
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    const toggleTheme = () => {
-        if (document.documentElement.classList.contains('dark')) {
-            document.documentElement.classList.remove('dark');
-            localStorage.theme = 'light';
-        } else {
-            document.documentElement.classList.add('dark');
-            localStorage.theme = 'dark';
-        }
-    };
-
     return (
-        <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-slate-900 pt-20 transition-colors duration-300">
+        <section className="relative w-full min-h-[100dvh] flex items-center justify-center overflow-hidden bg-white dark:bg-slate-900 pt-20 transition-colors duration-300">
             {/* Background Blobs - Modified for Dark Mode */}
             <div className="absolute top-0 left-0 w-72 h-72 md:w-96 md:h-96 bg-blue-300 dark:bg-blue-600 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-20 animate-blob"></div>
             <div className="absolute top-0 right-0 w-72 h-72 md:w-96 md:h-96 bg-yellow-200 dark:bg-purple-600 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-30 dark:opacity-20 animate-blob animation-delay-2000"></div>
@@ -50,9 +30,7 @@ const Hero = () => {
             </div>
 
             <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce pointer-events-none">
-                <svg className="w-6 h-6 text-slate-400 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
+                <ArrowDown size={24} weight="bold" className="text-slate-400 dark:text-slate-500" />
             </div>
         </section>
     );
